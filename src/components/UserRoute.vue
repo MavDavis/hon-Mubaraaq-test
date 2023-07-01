@@ -327,6 +327,29 @@ export default {
     };
   },
   methods: {
+    methods: {
+    payWithPaystack(e) {
+      let handler = PaystackPop.setup({
+        key: "pk_test_b76ad5b6fb6c5e5eb2542439c62606b8bc99f359",
+        email: "",
+        amount: 5 * 7000,
+        ref: "" + Math.floor(Math.random() * 1000000000 + 1),
+        onClose: function () {
+        },
+        callback: function (response) {
+          let message = "Payment complete! Reference: " + response.reference;
+          // alert(message);
+                    localStorage.setItem("receiptItems", JSON.stringify(this.localItems));
+
+
+        },
+      });
+
+      handler.openIframe();
+     this.$router.push("/User");
+
+    },
+  },
     edit() {
       this.$store.state.settings = true;
       this.$store.state.completeDonations = false;

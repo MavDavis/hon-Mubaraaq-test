@@ -147,7 +147,7 @@ export default {
   height: 100vh;
   width:100vw;
   font-weight: 100;
-  background: #1e6396;
+  background: skyblue;
   -webkit-overflow-y: hidden;
   -moz-overflow-y: hidden;
   -o-overflow-y: hidden;

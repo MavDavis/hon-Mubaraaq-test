@@ -82,6 +82,16 @@ export default createStore({
         signOut(firebaseAuth)
           .then(() => {
             localStorage.removeItem("userid");
+            state.User= {
+              userName: "",
+              userEmail: "",
+              userPassWord: "",
+              userID: "",
+              matricNom: "",
+              profileImage: null,
+              phoneNumber: null,
+              key: undefined,
+            },
             userEmail, userName, (userPassWord = "");
             localStorage.setItem("Is-logged", true);
             router.push("/");
@@ -134,6 +144,14 @@ export default createStore({
       } else if (matricNom.includes("/")) {
         state.error = true;
         state.errMssg = "Remove all slashes";
+        setTimeout(() => {
+          state.error = false;
+          state.errMssg = "";
+        }, 5000);
+      } 
+      else if (!matricNom.includes("CS" || "MD") ) {
+        state.error = true;
+        state.errMssg = "Signup is only for Jumsites";
         setTimeout(() => {
           state.error = false;
           state.errMssg = "";

@@ -1,132 +1,121 @@
 
-  <template>
-    <div class="body">
-  <div class="light x1"></div>
-  <div class="light x2"></div>
-  <div class="light x3"></div>
-  <div class="light x4"></div>
-  <div class="light x5"></div>
-  <div class="light x6"></div>
-  <div class="light x7"></div>
-  <div class="light x8"></div>
-  <div class="light x9"></div>
+<template>
+  <div class="body">
+    <div class="light x1"></div>
+    <div class="light x2"></div>
+    <div class="light x3"></div>
+    <div class="light x4"></div>
+    <div class="light x5"></div>
+    <div class="light x6"></div>
+    <div class="light x7"></div>
+    <div class="light x8"></div>
+    <div class="light x9"></div>
 
-  <div class="absolute top-0 left-0 w-full h-full">
-    <div class="absolute-two top-0 left-0 w-full h-full"></div>
-  </div>
-  <Loading v-if="$store.state.loading" />
-  <div
-    class="
-      py-7
-      login
-      flex
-      justify-center
-      sm:justify-between
-      items-center
-      min-h-screen
-      relative
-      z-50
-    "
-  >
-  <div class="w-full md:w-1/2">
-    <div class="w-full md:w-3/4">
-      <p class="text-sm text-white text-center">
-         Don't have an account?
-          <router-link
-            class="text-lg ml-1 z-50 text-white font-semibold underline hover:tracking-wider"
-            :to="{ name: 'Register' }"
-            >Register
-          </router-link>
-        </p>
-        <h1 class="font-semibold tracking-wider text-white text-xl text-center">
+    <Loading v-if="$store.state.loading" />
+    <div
+      class="py-7 login flex justify-center sm:justify-between items-center min-h-screen relative z-50"
+    >
+     
+ <div class="w-full md:w-1/2">
+  <div class="w-full md:w-3/4">
+    <p class="text-sm text-white text-center">
+       Don't have an account?
+        <router-link
+          class="text-lg ml-1 z-50 text-white font-semibold underline hover:tracking-wider"
+          :to="{ name: 'Register' }"
+          >Register
+        </router-link>
+      </p>
+      <h1 class="font-semibold tracking-wider text-white text-xl text-center">
 Login          </h1>
-    </div>
-        <div class="w-full">
-        <form class="px-5 pt-6 pb-8 mb-4 w-full md:w-3/4">
-          <p
-            v-if="$store.state.error"
+  </div>
+      <div class="w-full">
+      <form class="px-5 pt-6 pb-8 mb-4 w-full md:w-3/4">
+        <p
+          v-if="$store.state.error"
+          class="
+            error
+            text-center text-white
+            mb-2
+            text-sm
+            tracking-wide
+            font-semibold
+          "
+        >
+          {{ $store.state.errMssg }}
+        </p>
+        <div class="mb-4 relative">
+          <i class="fas fa-envelope absolute top-3 left-3 text-dark z-10"></i>
+          <input
             class="
-              error
-              text-center text-white
-              mb-2
-              text-sm
-              tracking-wide
-              font-semibold
+              bg-gray-100
+              appearance-none
+              border
+              rounded
+              w-full
+              py-2
+              px-8
+              text-black
+              leading-tight
+              focus:outline-none focus:shadow-outline
             "
+            v-model="$store.state.User.userEmail"
+            type="email"
+            required
+            placeholder="Email"
+          />
+        </div>
+        <div class="mb-4 relative">
+          <i class="fas fa-lock absolute top-3 left-3 text-dark z-10"></i>
+          <input
+            type="checkbox"
+            @click="toggledInputField"
+            class="absolute top-3 right-3 z-10"
+          />
+          <input
+            class="
+              appearance-none
+              bg-gray-100
+              rounded
+              w-full
+              py-2
+              px-8
+              text-dark
+              mb-3
+              leading-tight
+              focus:outline-none focus:shadow-outline
+            "
+            v-model="$store.state.User.userPassWord"
+            :type="inputField"
+            placeholder="Password"
+          />
+        </div>
+        <div class="flex flex-col items-center justify-between">
+          <button
+            @click="Login()"
+            class="
+              bg-black
+              hover:tracking-wider
+              text-white
+              font-bold
+              py-2
+              px-4
+              rounded-full
+              focus:outline-none focus:shadow-outline
+            "
+            type="button"
           >
-            {{ $store.state.errMssg }}
-          </p>
-          <div class="mb-4 relative">
-            <i class="fas fa-envelope absolute top-3 left-3 text-dark z-10"></i>
-            <input
-              class="
-                bg-gray-100
-                appearance-none
-                border
-                rounded
-                w-full
-                py-2
-                px-8
-                text-black
-                leading-tight
-                focus:outline-none focus:shadow-outline
-              "
-              v-model="$store.state.User.userEmail"
-              type="email"
-              required
-              placeholder="Email"
-            />
-          </div>
-          <div class="mb-4 relative">
-            <i class="fas fa-lock absolute top-3 left-3 text-dark z-10"></i>
-            <input
-              type="checkbox"
-              @click="toggledInputField"
-              class="absolute top-3 right-3 z-10"
-            />
-            <input
-              class="
-                appearance-none
-                bg-gray-100
-                rounded
-                w-full
-                py-2
-                px-8
-                text-dark
-                mb-3
-                leading-tight
-                focus:outline-none focus:shadow-outline
-              "
-              v-model="$store.state.User.userPassWord"
-              :type="inputField"
-              placeholder="Password"
-            />
-          </div>
-          <div class="flex flex-col items-center justify-between">
-            <button
-              @click="Login()"
-              class="
-                bg-black
-                hover:tracking-wider
-                text-white
-                font-bold
-                py-2
-                px-4
-                rounded-full
-                focus:outline-none focus:shadow-outline
-              "
-              type="button"
-            >
-              Sign In
-            </button>
-          </div>
-        </form>
+            Sign In
+          </button>
+        </div>
+      </form>
+    </div>
+  </div> 
+      <div class="hidden sm:block w-1/2 bg-img">
+        <div class="w-full h-full relative"></div>
       </div>
     </div>
-    <div class="hidden sm:block w-1/2 bg-img">
-      <div class="w-full h-full relative"></div>
-    </div>
-  </div></div>
+  </div>
 </template>
   
  
@@ -168,14 +157,14 @@ export default {
 }
 </script>
   
- <style scoped>
+<style scoped>
 
 .body {
   margin: 0;
   height: 100vh;
   width:100vw;
   font-weight: 100;
-  background: #1e6396;
+  background: skyblue;
   -webkit-overflow-y: hidden;
   -moz-overflow-y: hidden;
   -o-overflow-y: hidden;

@@ -4,12 +4,12 @@ import 'firebase/firestore'
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 const firebaseConfig = {
-  apiKey: "AIzaSyD67-qfU9wEf7_9woUQnoLuDMiPK-9wsAI",
-  authDomain: "wannandah-prjct.firebaseapp.com",
-  projectId: "wannandah-prjct",
-  storageBucket: "wannandah-prjct.appspot.com",
-  messagingSenderId: "611758439846",
-  appId: "1:611758439846:web:23a325b441e66334a96367"
+  apiKey: "AIzaSyDgYt2McHU0uhK5oC2IPMR6g_6YzzeZtBY",
+  authDomain: "jumsa-f7761.firebaseapp.com",
+  projectId: "jumsa-f7761",
+  storageBucket: "jumsa-f7761.appspot.com",
+  messagingSenderId: "613247565688",
+  appId: "1:613247565688:web:ffcf3e104d2053250e528d"
 };
 
 export const firebaseApp = initializeApp(firebaseConfig);
